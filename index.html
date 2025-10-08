@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>❤️Álbum de Fotos Naho❤️</title>
+    <link rel="stylesheet" href="stilos.css">
+    <style>
+        body {
+            background-color: rgb(124, 124, 124);
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .album-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .main-display {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 25px;
+            padding: 0 40px;
+        }
+
+        #mainPhoto {
+            width: 300px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-left: -80px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.8s ease;
+        }
+
+        .photo-text {
+            max-width: 420px;
+            font-style: oblique;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: white;
+            font-size: 20px;
+            line-height: 1.5;
+            text-shadow: 1px 1px 3px black;
+            text-align: justify;
+            margin-top: 20px;
+            transition: opacity 0.8s ease;
+        }
+
+        section {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        section img {
+            width: 0;
+            flex-grow: 1;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: all 1s ease;
+            filter: blur(2px) contrast(100%) grayscale(80%);
+        }
+
+        section img:hover {
+            cursor: pointer;
+            width: 50px;
+            opacity: 1;
+            filter: contrast(120%) blur(0);
+        }
+
+        .selected {
+            border: 3px solid white;
+            filter: blur(0);
+        }
+            .hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    bottom: -20px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 100, 150, 0.8);
+    transform: rotate(45deg);
+    animation: floatUp 6s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: 10px;
+    top: 0;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1) rotate(45deg); opacity: 1; }
+    100% { transform: translateY(-100vh) scale(0.5) rotate(45deg); opacity: 0; }
+}
+body {
+    background: linear-gradient(-45deg, #000000, #5c5c5d, #42a5f5, #3843c3);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 900px) {
+    .main-display {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 0 10px;
+    }
+    #mainPhoto {
+        width: 220px;
+        height: 220px;
+        margin-left: 0;
+    }
+    .photo-text {
+        font-size: 16px;
+        max-width: 90vw;
+    }
+    section {
+        height: 120px;
+    }
+}
+@media (max-width: 600px) {
+    .album-container {
+        height: auto;
+        min-height: 100vh;
+    }
+    .main-display {
+        gap: 10px;
+        padding: 0 2vw;
+    }
+    #mainPhoto {
+        width: 140px;
+        height: 140px;
+    }
+    .photo-text {
+        font-size: 13px;
+        max-width: 98vw;
+        margin-top: 10px;
+    }
+    section {
+        height: 60px;
+        max-width: 98vw;
+        gap: 2px;
+    }
+    section img {
+        border-radius: 5px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="album-container">
+        <div class="main-display">
+            <img id="mainPhoto" src="Fotos amor/c67fd9080d3b0a28c508b50492078abf.gif"  alt="Foto principal">
+            <div class="photo-text" id="photoText">"Seleccione una imagen, amor" </div>
+        </div>
+
+        <section>
+            <img class="thumbnail" src="Fotos amor/20250726_123421.jpg" alt="Foto 1"
+                 data-text="Un día al revisar mi galería, estaba llena de fotos suyas, y pensé 'wow, que hermosa mujer, estoy enamorado', y seguí viendo las fotos, en todas se veía hermosa. Ahora estoy aquí pensando que no he tomado suficientes fotografías y me arrepiento por no hacerlo, cuando estoy con usted olvido que debo capturar con mi cámara cada sonrisa, cada gesto…, para la próxima dejaré un recordatorio programado."
+                 data-audio="musica amor/labios rotos.mp3">
+
+            <img class="thumbnail" src="Fotos amor/20250726_123547.jpg" alt="Foto 2"
+                 data-text="Eso que sentí ese día fue lo mismo que sentí cuando me di cuenta que me gustaba, y eso mismo sigo sintiendo cada día que pasa. Por favor, siempre ámeme como solo usted lo sabe hacer, deme cariño y caricias. Soy consciente que la vida no será fácil pero no me asusta si es usted quien está a mi lado."
+                 data-audio="musica amor/te quiero tanto.mp3">
+
+            <img class="thumbnail" src="Fotos amor/20250427_164933.jpg" alt="Foto 3"
+                 data-text="Dios nos juntó con un propósito, y aunque no me di cuenta desde un principio, Él insistió en que usted y yo debíamos estar juntos. Hoy somos una pareja inseparable, un dúo como ningún otro, somos un equipo imparable. Nada es inalcanzable si caminamos juntos, nada es imposible si Dios está con nosotros."
+                 data-audio="musica amor/porfa no te vayas.mp3">
+
+            <img class="thumbnail" src="Fotos amor/IMG-20250626-WA0005.jpg" alt="Foto 4"
+                 data-text="Me enamoré y sigo enamorado, de su sonrisa, de su mirada, de su forma de ser, de su forma de pensar, de su forma de actuar, de su forma de amar, y nunca me han dicho que soy un tonto por enamorarme tanto de usted, se ve reflejado en mi la felicidad que usted me da, hasta soy una mejor persona. Espero que para usted sea igual."
+                 data-audio="musica amor/Acuérdate De Mí.mp3">
+
+            <img class="thumbnail" src="Fotos amor/IMG-20250830-WA0133.jpg" alt="Foto 5"
+                 data-text="Soy tan feliz a su lado que hasta olvido todos los momentos malos que he vivido. Gracias a usted vivo muy contento, y el niño que hay en mí está feliz. Voy a protegerla con mi vida. Voy a bailar de alegría, voy a cantarle aunque se ría, por ver esa sonrisa es que me esfuerzo cada día, también para hacerla sentir orgullosa y no decepcionada. Te amo."
+                 data-audio="musica amor/locos.mp3">
+
+            <img class="thumbnail" src="Fotos amor/IMG_20250831_003031_660.webp" alt="Foto 6"
+                 data-text="Pasarán días, meses, años... toda una vida por delante juntos, y quiero estar a su lado siempre, en las buenas y en las malas, en la salud y en la enfermedad, en la riqueza y en la pobreza, hasta que la muerte nos separe. Me siento la persona mas afortunada del mundo, soy bien aventurado porque encontré al amor de mi vida, una mujer que me motiva y me llena de inspiración, que me corrige y da ejemplo, que se ríe conmigo y se preocupa en todo momento por mí."
+                 data-audio="musica amor/mi suerte.mp3">
+
+            <img class="thumbnail" src="Fotos amor/IMG-20250613-WA0024.jpg" alt="Foto 7"
+                 data-text="Es extraño: cuando estamos juntos el tiempo pasa lento para disfrutar cada instante, pero a la vez pasa tan rápido que no puedo controlar mis ansias de querer pasar más tiempo juntos. Algún día la tendré para mí todo el tiempo que quiera, pero aun así, jamás se saciarán mis ojos de verla, mis manos de tocarla, mis oídos de escucharla ni mis labios de besarla."
+                 data-audio="musica amor/love.mp3">
+        </section>
+    </div>
+
+    <!-- 🎧 Elemento de audio oculto -->
+    <audio id="player" hidden></audio>
+
+    <script>
+        const mainPhoto = document.getElementById('mainPhoto');
+        const photoText = document.getElementById('photoText');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const player = document.getElementById('player');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                // Cambiar imagen principal
+                mainPhoto.src = this.src;
+
+                // Cambiar texto con efecto suave
+                photoText.style.opacity = 0;
+                setTimeout(() => {
+                    photoText.textContent = this.dataset.text;
+                    photoText.style.opacity = 1;
+                }, 300);
+
+                // Quitar selección previa y aplicar al actual
+                thumbnails.forEach(t => t.classList.remove('selected'));
+                this.classList.add('selected');
+
+                // Reproducir música asociada
+                const audioSrc = this.dataset.audio;
+                if (audioSrc) {
+                    player.src = audioSrc;
+                    player.play().catch(err => console.log('Autoplay bloqueado:', err));
+                }
+            });
+        });
+    </script>
+    <div class="hearts"></div>
+
+<script>
+const heartsContainer = document.querySelector('.hearts');
+setInterval(() => {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 4 + Math.random() * 3 + 's';
+    heartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}, 400);
+</script>
+
+</body>
+</html>
