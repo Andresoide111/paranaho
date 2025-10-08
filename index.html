@@ -199,7 +199,7 @@ body {
         <section>
             <img class="thumbnail" src="Fotos amor/20250726_123421.jpg" alt="Foto 1"
                  data-text="Un día al revisar mi galería, estaba llena de fotos suyas, y pensé 'wow, que hermosa mujer, estoy enamorado', y seguí viendo las fotos, en todas se veía hermosa. Ahora estoy aquí pensando que no he tomado suficientes fotografías y me arrepiento por no hacerlo, cuando estoy con usted olvido que debo capturar con mi cámara cada sonrisa, cada gesto…, para la próxima dejaré un recordatorio programado."
-                 data-audio="musica amor/Labios Rotos.mp3">
+                 data-audio="musica amor/labios rotos.mp3">
 
             <img class="thumbnail" src="Fotos amor/20250726_123547.jpg" alt="Foto 2"
                  data-text="Eso que sentí ese día fue lo mismo que sentí cuando me di cuenta que me gustaba, y eso mismo sigo sintiendo cada día que pasa. Por favor, siempre ámeme como solo usted lo sabe hacer, deme cariño y caricias. Soy consciente que la vida no será fácil pero no me asusta si es usted quien está a mi lado."
@@ -228,10 +228,7 @@ body {
     </div>
 
     <!-- 🎧 Elemento de audio oculto -->
-    <audio controls autoplay loop>
-  <source src="Musica amor/Labios Rotos.mp3" type="audio/mpeg">
-  Tu navegador no soporta el elemento de audio.
-</audio>
+    <audio id="player" hidden></audio>
 
     <script>
         const mainPhoto = document.getElementById('mainPhoto');
@@ -258,8 +255,40 @@ body {
                 // Reproducir música asociada
                 const audioSrc = this.dataset.audio;
                 if (audioSrc) {
-                    player.src = audioSrc;
-                    player.play().catch(err => console.log('Autoplay bloqueado:', err));
+                    // codificar la ruta para manejar espacios y caracteres especiales
+                    const encoded = encodeURI(audioSrc);
+
+                    // comprobar si el archivo existe (opcional) y luego asignar
+                    fetch(encoded, { method: 'HEAD' }).then(resp => {
+                        if (!resp.ok) console.warn('Audio no encontrado en la ruta:', encoded);
+                        player.src = encoded;
+                        // intentar reproducir; si falla, mostrar control/ botón para interacción del usuario
+                        player.play().catch(err => {
+                            console.log('Autoplay bloqueado o error al reproducir:', err);
+                            // mostrar controles para permitir que el usuario reproduzca manualmente
+                            player.controls = true;
+
+                            // crear un botón discreto para reproducir el audio (si no existe)
+                            let btn = document.getElementById('playAudioBtn');
+                            if (!btn) {
+                                btn = document.createElement('button');
+                                btn.id = 'playAudioBtn';
+                                btn.textContent = '▶︎ Reproducir música';
+                                btn.style.cssText = 'position:fixed; right:16px; bottom:16px; z-index:9999; padding:8px 12px; border-radius:8px; background:#fff; color:#000; border:none; box-shadow:0 2px 6px rgba(0,0,0,.3);';
+                                btn.addEventListener('click', () => {
+                                    player.play().catch(e => console.log('Error al reproducir después de interacción:', e));
+                                    // ocultar botón después de reproducir
+                                    try { btn.remove(); } catch(e){}
+                                });
+                                document.body.appendChild(btn);
+                            }
+                        });
+                    }).catch(err => {
+                        console.warn('Error al comprobar el archivo de audio (fetch):', err);
+                        // aún intentar asignar la ruta codificada
+                        player.src = encoded;
+                        player.play().catch(e => console.log('Error al reproducir:', e));
+                    });
                 }
             });
         });
@@ -279,9 +308,4 @@ setInterval(() => {
 </script>
 
 </body>
-
 </html>
-
-
-
-
